@@ -1,0 +1,28 @@
+
+
+[tasks.common]
+    links = [
+        [".vimrc", ".config/.vimrc"]
+    ]
+[tasks.zsh]
+    links = [
+        [".zshrc", ".config/.zshrc"],
+        [".config/zsh/functions.sh"],
+        [".config/zsh/aliasses.sh"],
+        [".config/zsh/custom/themes/fou.zsh-theme"]
+    ]
+[tasks.fish]
+    rejects = [["which", "fish"]]
+    links = [[".config/fish/config.fish"]]
+[tasks.git]
+    links = [
+        [".config/git/gitignore"],
+        [".gitconfig", ".config/git/gitconfig.toml"]
+    ]
+
+#
+# default
+#
+
+[tasks.default]
+    deps = ["zsh", "git"]
