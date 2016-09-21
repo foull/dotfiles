@@ -11,7 +11,7 @@
 
 [github]
     user = foull
-    token = token
+    token = xxxNeedValue   # git config --global github.user
 
 [gitflow "prefix"]
     feature = feature-

@@ -1,9 +1,22 @@
+# -------------------------------------------------------------------
+# macros
+# -------------------------------------------------------------------
 
+[macros.install__debian]
+    prefix = ["sudo", "apt-get", "install", "-y"]
+
+[macros.install__mac]
+    prefix = ["brew", "install"]
+
+# -------------------------------------------------------------------
+# basic tasks
+# -------------------------------------------------------------------
 
 [tasks.common]
     links = [
         [".vimrc", ".config/.vimrc"]
     ]
+
 [tasks.zsh]
     links = [
         [".zshrc", ".config/.zshrc"],
@@ -11,18 +24,37 @@
         [".config/zsh/aliasses.sh"],
         [".config/zsh/custom/themes/fou.zsh-theme"]
     ]
-[tasks.fish]
+
+[tasks.fish__static]
     rejects = [["which", "fish"]]
     links = [[".config/fish/config.fish"]]
+
+[tasks.fish]
+    cmds = [
+        ["@install", "fish"]
+    ]
+    links = [[".config/fish/config.fish"]]
+
 [tasks.git]
+    cmds = [
+        ["@install", "git"]
+    ]
     links = [
         [".config/git/gitignore"],
         [".gitconfig", ".config/git/gitconfig.toml"]
     ]
 
-#
-# default
-#
+[tasks.gitflow]
+    deps = ["git"]
+    cmds = [
+        ["@install", "git-flow"],
+        ["@install", "bash-completion"],
+        ["git", "clone", "git@github.com:bobthecow/git-flow-completion.git", ".config/git-flow-completion"]
+    ]
+
+# -------------------------------------------------------------------
+# default task
+# -------------------------------------------------------------------
 
 [tasks.default]
-    deps = ["zsh", "git"]
+    deps = ["zsh", "gitflow"]

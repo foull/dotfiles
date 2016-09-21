@@ -18,6 +18,7 @@ plugins=(git osx z npm bower)
 # source
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/aliases.zsh
+source ~/.config/git-flow-completion/.git-flow-completion.zsh
 
 
 #
