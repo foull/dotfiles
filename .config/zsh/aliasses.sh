@@ -1,6 +1,3 @@
-
-alias _='sudo'
-
 # -------------------------------------------------------------------
 # directory movement
 # -------------------------------------------------------------------
@@ -62,8 +59,6 @@ alias g='git'
 alias gp='git push'
 alias gl='git pull --rebase'
 
-
-
 # -------------------------------------------------------------------
 # globals
 # -------------------------------------------------------------------
@@ -72,3 +67,11 @@ alias -g L="|less" # Write L after a command to page through the output.
 alias -g TL='| tail -20'
 alias -g NUL="> /dev/null 2>&1" # You get the idea.
 
+
+# -------------------------------------------------------------------
+# others
+# -------------------------------------------------------------------
+
+alias _='sudo'
+alias a="~/ansible/bin/ansible"
+alias ap="~/ansible/bin/ansible-playbook"

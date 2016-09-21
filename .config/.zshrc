@@ -4,16 +4,14 @@ ZSH_CUSTOM=$HOME/.config/zsh/custom
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-export PATH="~/Downloads:$PATH"
-
-alias a="~/ansible/bin/ansible"
-alias ap="~/ansible/bin/ansible-playbook"
+# Update PATH
+export PATH="~/bin:$PATH"
 
 # theme
 ZSH_THEME='fou'
 
 # plugins
-plugins=(git osx z npm bower)
+plugins=(git git-flow osx z npm brew docker emoji)
 
 # source
 source ~/.config/zsh/functions.zsh
@@ -31,5 +29,4 @@ export EDITOR=vim
 #eval "$(rbenv init -)"
 
 source $ZSH/oh-my-zsh.sh
-eval "$(~/.noz/bin/noz init -)"
 
