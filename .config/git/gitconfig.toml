@@ -2,6 +2,24 @@
     name = Krzysztof Lenda
     email = fou@f17.pl
 
+[core]
+    editor = vim
+    excludesfile = ~/.config/git/gitignore
+    pager = less -FRSX
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    whitespace = nowarn
+
+[github]
+    user = foull
+    token = token
+
+[gitflow "prefix"]
+    feature = feature-
+    release = release-
+    hotfix = hotfix-
+    support = support-
+    versiontag = v
+
 [color]
     diff = auto
     status = auto
@@ -26,27 +44,66 @@
     changed = green
     untracked = cyan
 
-[core]
-    excludesfile = ~/.config/git/gitignore
-    pager = less -FRSX
-    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    whitespace = nowarn
-
 [push]
     default = simple
 
 [alias]
+    a = add --all
+    ai = add -i
     st = status
-    br = branch
+    b = branch
+    br = branch -av
     ci = commit -m
     co = checkout
+    gsu = submodule update --init --recursive
+    cp = cherry-pick
     df = diff
     dc = diff --cached
     ls = ls-files
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)%an%Creset' --abbrev-commit --date=relative
     ll = log -p --oneline --decorate
-    gsu = submodule update --init --recursive
-    cp = cherry-pick
+
+    # fetch
+    f = fetch
+    fo = fetch origin
+    fu = fetch upstream
+
+    # merge
+    m = merge
+    ma = merge --abort
+    mc = merge --continue
+    ms = merge --skip
+
+    # push
+    ps = push
+
+    # pull
+    pl = pull
+    pb = pull --rebase
+
+    # stash
+    sa = stash apply
+    sc = stash clear
+    sd = stash drop
+    sl = stash list
+    sp = stash pop
+    ss = stash save
+    sw = stash show
 
     drzewo = log --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %Cgreen(%cr)%Creset%n%w(80,8,8)%s' --graph
     duzedrzewo = log --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %Cgreen(%cr)%Creset%n%w(80,8,8)%s%n' --graph --name-status
+
+    # Show all of my configured aliases
+    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+
+    # Show the current branch name (usefull for shell prompts)
+    brname = !git branch | grep "^*" | awk '{ print $2 }'
+
+    # Which files are receiving the most "love"
+    churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 "," $2}'
+
+    # Return a list of commit SHA1s
+    l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
+
+
+
