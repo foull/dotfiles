@@ -76,6 +76,8 @@
 
     # push
     ps = push
+    # push --force but ensure u fetched all data from remote
+    please = push --force-with-lease
 
     # pull
     pl = pull
