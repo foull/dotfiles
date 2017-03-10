@@ -75,3 +75,6 @@ alias -g NUL="> /dev/null 2>&1" # You get the idea.
 alias _='sudo'
 alias a="~/ansible/bin/ansible"
 alias ap="~/ansible/bin/ansible-playbook"
+
+# Recursively delete `.DS_Store` files
+alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"

@@ -20,29 +20,38 @@
     support = support-
     versiontag = v
 
+# so much color
 [color]
+	ui = always
     diff = auto
     status = auto
     branch = auto
     interactive = auto
-    ui = true
     pager = true
 
-[color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
-
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
 
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 
 [push]
     default = simple
@@ -57,7 +66,7 @@
     co = checkout
     gsu = submodule update --init --recursive
     cp = cherry-pick
-    df = diff --ignore-space-change --color
+    df = diff --ignore-space-change --color --color-words --abbrev
     dc = diff --cached --ignore-space-change --color
     ls = ls-files
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)%an%Creset' --abbrev-commit --date=relative
@@ -107,5 +116,6 @@
     # Return a list of commit SHA1s
     l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
-
+	# Show the diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
