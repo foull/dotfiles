@@ -56,10 +56,18 @@ Thumbs.db
 
 *.sublime-project
 *.sublime-workspace
-/.idea/
+.idea/
 .vscode/
+
+# ----------------------------
+# Python
+# ----------------------------
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
 
 # ----------------------------
 # my private files
 # ----------------------------
 ___*.sh
+_fou*

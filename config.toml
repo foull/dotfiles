@@ -2,59 +2,82 @@
 # macros
 # -------------------------------------------------------------------
 
-[macros.install__debian]
-    prefix = ["sudo", "apt-get", "install", "-y"]
+[macros.installnpm]
+prefix = ["npm", "install", "-g"]
+
+[macros.install__linux]
+prefix = ["sudo", "apt-get", "install", "-y"]
 
 [macros.install__mac]
-    prefix = ["brew", "install"]
+prefix = ["brew", "install"]
 
 # -------------------------------------------------------------------
-# basic tasks
+# tasks for depenendcies
+# -------------------------------------------------------------------
+
+
+[tasks.bash-stuff]
+cmds = [
+    ["@install", "tmux"],
+    ["@install", "bash-completion"]
+]
+
+[tasks.diff-so-fancy]
+rejects = [["which", "diff-so-fancy"]]
+cmds = [
+    ["@installnpm", 'diff-so-fancy']
+]
+
+[tasks.git]
+deps = ['diff-so-fancy']
+cmds = [
+    ["@install", "git"]
+]
+links = [
+    [".gitconfig", ".config/git/.gitconfig"]
+]
+
+[tasks.gitflow]
+deps = ["git"]
+cmds = [
+    ["@install", "git-flow"],
+    ["@install", "bash-completion"],
+    ["git", "clone", "git@github.com:bobthecow/git-flow-completion.git", "dotfiles/.config/git-flow-completion"]
+]
+
+# -------------------------------------------------------------------
+# tasks with configuration
 # -------------------------------------------------------------------
 
 [tasks.common]
-    links = [
-        [".vimrc", ".config/.vimrc"]
-    ]
-
-[tasks.zsh]
-    links = [
-        [".zshrc", ".config/.zshrc"],
-        [".config/zsh/functions.sh"],
-        [".config/zsh/aliasses.sh"],
-        [".config/zsh/custom/themes/fou.zsh-theme"]
-    ]
-
-[tasks.fish__static]
-    rejects = [["which", "fish"]]
-    links = [[".config/fish/config.fish"]]
-
-[tasks.fish]
-    cmds = [
-        ["@install", "fish"]
-    ]
-    links = [[".config/fish/config.fish"]]
-
-[tasks.git]
-    cmds = [
-        ["@install", "git"]
-    ]
-    links = [
-        [".config/git/gitignore"],
-        [".gitconfig", ".config/git/gitconfig.toml"]
-    ]
-
-[tasks.gitflow]
-    deps = ["git"]
-    cmds = [
-        ["@install", "git-flow"],
-        ["@install", "bash-completion"],
-        ["git", "clone", "git@github.com:bobthecow/git-flow-completion.git", ".config/git-flow-completion"]
-    ]
-
-# -------------------------------------------------------------------
-# default task
-# -------------------------------------------------------------------
+links = [
+    [".vimrc", ".config/.vimrc"]
+]
 
 [tasks.default]
-    deps = ["zsh", "gitflow"]
+deps = ['bash-stuff', 'git', 'common']
+links = [
+    [".profile-fou", ".config/.profile"]
+]
+
+# -------------------------------------------------------------------
+# old / unused
+# -------------------------------------------------------------------
+
+#[tasks.zsh]
+#    links = [
+#        [".zshrc", ".config/.zshrc"],
+#        [".config/zsh/functions.sh"],
+#        [".config/zsh/aliases.sh"],
+#        [".config/zsh/custom/themes/fou.zsh-theme"]
+#    ]
+
+#[tasks.fish__static]
+#    rejects = [["which", "fish"]]
+#    links = [[".config/fish/config.fish"]]
+#
+#[tasks.fish]
+#    cmds = [
+#        ["@install", "fish"]
+#    ]
+#    links = [[".config/fish/config.fish"]]

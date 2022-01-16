@@ -1,17 +1,35 @@
+# docs -> https://git-scm.com/docs/git-config
+
 [user]
     name = Krzysztof Lenda
     email = fou@f17.pl
 
+[credential]
+    helper = store
+
 [core]
     editor = vim
-    excludesfile = ~/.config/git/gitignore
-    pager = diff-so-fancy | less --tabs=4 -FRSX --pattern '^(Date|added|deleted|modified): '
+    excludesfile = ~/.config/git/.gitignore
+    pager = diff-so-fancy # | less --tabs=4 -FRSX --pattern '^(Date|added|deleted|modified): '
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     whitespace = nowarn
+    autocrlf = input
+
+[interactive]
+    diffFilter = diff-so-fancy --patch
 
 [github]
     user = foull
     token = xxxNeedValue   # git config --global github.user
+
+[diff]
+    renameLimit = 5000  # default 1000
+
+[diff-so-fancy]
+    markEmptyLines = true
+    changeHunkIndicators = true
+    stripLeadingSymbols = true
+    useUnicodeRuler = true
 
 [gitflow "prefix"]
     feature = feature-
@@ -20,9 +38,8 @@
     support = support-
     versiontag = v
 
-# so much color
 [color]
-	ui = always
+    ui = always
     diff = auto
     status = auto
     branch = auto
@@ -30,28 +47,29 @@
     pager = true
 
 [color "diff"]
-	meta = yellow bold
-	commit = green bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = 11
+    frag = magenta bold
+    func = 146 bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = "red bold 52"
-	newNormal = "green bold"
-	newHighlight = "green bold 22"
+    oldNormal = red bold
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
 
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 
 [push]
     default = simple
@@ -60,12 +78,19 @@
     a = add --all
     ai = add -i
     st = status
-    b = branch
-    br = branch -av
     ci = commit -m
     co = checkout
+
+    b = branch
+    br = branch -av
+    bm = branch --merged
+
     gsu = submodule update --init --recursive
+
     cp = cherry-pick
+    cpa = cherry-pick --abort
+    cpc = cherry-pick --continue
+
     df = diff --ignore-space-change --color --color-words --abbrev
     dc = diff --cached --ignore-space-change --color
     ls = ls-files
@@ -91,6 +116,7 @@
     # pull
     pl = pull
     pb = pull --rebase
+    up = pull --rebase --autostash
 
     # stash
     sa = stash apply
@@ -116,6 +142,5 @@
     # Return a list of commit SHA1s
     l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
+	  # Show the diff between the latest commit and the current state
+	  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"

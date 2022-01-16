@@ -29,3 +29,11 @@ fi;
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
+
+
+# add ~/dotfiles/bin to $PATH
+export PATH=$PATH:~/dotfiles/bin
+
+source ~/dotfiles/.config/bash/aliases.sh
+source ~/dotfiles/.config/bash/functions.sh
+source ~/dotfiles/.config/git-flow-completion/git-flow-completion.bash
