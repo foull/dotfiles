@@ -7,6 +7,6 @@ echo "./bin/homemaker --verbose --task=$TASK --dest $HOME --variant=$VARIANT con
 ./bin/homemaker --verbose --task=$TASK --dest $HOME --variant=$VARIANT config.toml .
 
 echo ''
-echo 'Adding sourcing of ~/.profile-dotfiles to ~/.profile'
+echo 'Add  ~/.profile-dotfiles to ~/.profile by running command:'
 
-echo 'source ~/.profile-dotfiles' >> ~/.profile
+echo "echo 'source ~/.profile-dotfiles' >> ~/.profile"

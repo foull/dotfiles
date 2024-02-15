@@ -36,4 +36,7 @@ export PATH=$PATH:~/dotfiles/bin
 
 source ~/dotfiles/.config/bash/aliases.sh
 source ~/dotfiles/.config/bash/functions.sh
+
+# git-flow completion
+[ -f ~/dotfiles/.config/git-flow-completion/git-flow-completion.bash ] &&
 source ~/dotfiles/.config/git-flow-completion/git-flow-completion.bash

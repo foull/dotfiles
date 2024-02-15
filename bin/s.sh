@@ -3,6 +3,7 @@
 # Define the associative array (dictionary)
 declare -A commands=(
     ["k"]="cat ~/.ssh/id_rsa.pub"
+    ["hell"]="ssh hell.f17.cloud -l fou"
     ["vps-de"]="ssh ubuntu@vps-c4a67777.vps.ovh.net"
     ["vps-waw"]="ssh vps-7e0a18da.vps.ovh.net -l ubuntu"
     ["md-f17"]="ssh s9.mydevil.net -l f17"

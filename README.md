@@ -1,7 +1,7 @@
 # dotfiles
 
 ```
-git clone git@gitlab.com:f17/dotfiles-fou.git`
+git clone git@gitlab.com:f17/dotfiles-fou.git dotfiles`
 cd dotfiles
 ``` 
 
