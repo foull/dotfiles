@@ -11,7 +11,6 @@ Default installation: `./install.sh` (for linux os, with default task, in home d
 
 * `./install.sh default mac` - default installation for mac
 * `./install.sh tmux` - install only tmux (run single task)
-* `./install.sh tmux mac /custom/folder` - install only tmux for mac in `/custom/folder` instead of home directory
 
 Homemaker command:
 

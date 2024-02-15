@@ -1,8 +1,8 @@
 # docs -> https://git-scm.com/docs/git-config
 
-[user]
-    name = Krzysztof Lenda
-    email = fou@f17.pl
+# [user]
+#	  name = example
+#    email = example@example
 
 [credential]
     helper = store
@@ -18,9 +18,9 @@
 [interactive]
     diffFilter = diff-so-fancy --patch
 
-[github]
-    user = foull
-    token = xxxNeedValue   # git config --global github.user
+# [github]
+#   user = foull
+#   token = xxxNeedValue   # git config --global github.user
 
 [diff]
     renameLimit = 5000  # default 1000
@@ -104,8 +104,8 @@
 
     # merge
     m = merge
-    ma = merge --abort
     mc = merge --continue
+    ma = merge --abort
     ms = merge --skip
 
     # push
@@ -142,5 +142,8 @@
     # Return a list of commit SHA1s
     l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
-	  # Show the diff between the latest commit and the current state
-	  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    # Show the diff between the latest commit and the current state
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+[user]
+	name = fou
+	email = fou@f17.pl

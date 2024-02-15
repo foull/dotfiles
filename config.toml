@@ -19,6 +19,8 @@ prefix = ["brew", "install"]
 [tasks.bash-stuff]
 cmds = [
     ["@install", "tmux"],
+    ["@install", "curl"],
+    ["@install", "vim"],
     ["@install", "bash-completion"]
 ]
 
@@ -57,7 +59,7 @@ links = [
 [tasks.default]
 deps = ['bash-stuff', 'git', 'common']
 links = [
-    [".profile-fou", ".config/.profile"]
+    [".profile-dotfiles", ".config/.profile"]
 ]
 
 # -------------------------------------------------------------------

@@ -1,4 +1,11 @@
 # -------------------------------------------------------------------
+# fou! custom commands
+# -------------------------------------------------------------------
+
+# s -> dotfiles/bin (SSH)
+alias s="~/dotfiles/bin/s.sh"
+
+# -------------------------------------------------------------------
 # directory movement
 # -------------------------------------------------------------------
 
@@ -40,13 +47,6 @@ alias dus='du -sckx * | sort -nr'
 alias wordy='wc -w * | sort | tail -n10'
 # number of files (not directories)
 alias filecount'=find . -type f | wc -l'
-
-# -------------------------------------------------------------------
-# ssh hosts
-# -------------------------------------------------------------------
-
-alias mydevil-santri='ssh s2.mydevil.net -l santri'
-alias mydevil-ttt-dev-db='ssh -f ttt-dev@s6.mydevil.net -L 8543:pgsql6.mydevil.net:5432 -N'
 
 # -------------------------------------------------------------------
 # git
