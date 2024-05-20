@@ -4,7 +4,7 @@
 declare -A commands=(
     ["k"]="cat ~/.ssh/id_rsa.pub"
     ["hell"]="ssh hell.f17.cloud -l fou"
-    ["vps-de"]="ssh ubuntu@vps-c4a67777.vps.ovh.net"
+    ["hades"]="ssh hades.f17.cloud -l fou"
     ["vps-waw"]="ssh vps-7e0a18da.vps.ovh.net -l ubuntu"
     ["md-f17"]="ssh s9.mydevil.net -l f17"
     ["md-santri-dev"]="ssh s11.mydevil.net -l santri-dev"
