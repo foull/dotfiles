@@ -74,3 +74,6 @@ __pycache__/
 # ----------------------------
 ___*.sh
 _fou*
+
+## firebase
+.firebase/
