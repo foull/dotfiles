@@ -1,149 +1,176 @@
 # docs -> https://git-scm.com/docs/git-config
+# resources:
+# * https://blog.gitbutler.com/how-git-core-devs-configure-git/
 
-# [user]
-#	  name = example
-#    email = example@example
-
+[user]
+  name = Krzysztof Lenda
+  email = fou@f17.pl
 [credential]
-    helper = store
-
+  helper = store
+[column]
+  ui = auto  # output of some commands in columns
+[branch]
+  sort = -committerdate  # sorts the list by the most recent commit date
+[tag]
+  sort = version:refname  # better tag sorting, treating dotted version numbers as a series of integer values
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+[pull]
+  rebase = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
 [core]
-    editor = vim
-    excludesfile = ~/dotfiles/.config/git/.gitignore
-    pager = diff-so-fancy # | less --tabs=4 -FRSX --pattern '^(Date|added|deleted|modified): '
-    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    whitespace = nowarn
-    autocrlf = input
-
+  editor = vim
+  excludesfile = ~/dotfiles/.config/git/.gitignore
+  pager = diff-so-fancy # | less --tabs=4 -FRSX --pattern '^(Date|added|deleted|modified): '
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  whitespace = nowarn
+  autocrlf = input
 [interactive]
-    diffFilter = diff-so-fancy --patch
-
+  diffFilter = diff-so-fancy --patch
+[init]
+  defaultBranch = master
 # [github]
 #   user = foull
 #   token = xxxNeedValue   # git config --global github.user
+[help]
+  autocorrect = prompt
+[commit]
+  verbose = true
 
+[rerere] 	# better handling rebases with conflicts
+  enabled = true
+  autoupdate = true
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[merge]
+  conflictstyle = diff3
 [diff]
-    renameLimit = 5000  # default 1000
+  renameLimit = 5000  # default 1000
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true  	# detect if a file has been renamed
 
 [diff-so-fancy]
-    markEmptyLines = true
-    changeHunkIndicators = true
-    stripLeadingSymbols = true
-    useUnicodeRuler = true
+  markEmptyLines = true
+  changeHunkIndicators = true
+  stripLeadingSymbols = true
+  useUnicodeRuler = true
 
 [gitflow "prefix"]
-    feature = feature-
-    release = release-
-    hotfix = hotfix-
-    support = support-
-    versiontag = v
+  feature = feature-
+  release = release-
+  hotfix = hotfix-
+  support = support-
+  versiontag = v
 
 [color]
-    ui = always
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = auto
-    pager = true
+  ui = always
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  pager = true
 
 [color "diff"]
-    meta = 11
-    frag = magenta bold
-    func = 146 bold
-    commit = yellow bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
+  meta = 11
+  frag = magenta bold
+  func = 146 bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 
 [color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = "red bold 52"
-    newNormal = "green bold"
-    newHighlight = "green bold 22"
+  oldNormal = red bold
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
 
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
-
-[push]
-    default = simple
+  added = yellow
+  changed = green
+  untracked = cyan
 
 [alias]
-    a = add --all
-    ai = add -i
-    st = status
-    ci = commit -m
-    co = checkout
+  a = add --all
+  ai = add -i
+  st = status
+  ci = commit -m
+  co = checkout
 
-    b = branch
-    br = branch -av
-    bm = branch --merged
+  b = branch
+  br = branch -av
+  bm = branch --merged
 
-    gsu = submodule update --init --recursive
+  gsu = submodule update --init --recursive
 
-    cp = cherry-pick
-    cpa = cherry-pick --abort
-    cpc = cherry-pick --continue
+  cp = cherry-pick
+  cpa = cherry-pick --abort
+  cpc = cherry-pick --continue
 
-    df = diff --ignore-space-change --color --color-words --abbrev
-    dc = diff --cached --ignore-space-change --color
-    ls = ls-files
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)%an%Creset' --abbrev-commit --date=relative
-    ll = log -p --oneline --decorate
+  df = diff --ignore-space-change --color --color-words --abbrev
+  dc = diff --cached --ignore-space-change --color
+  ls = ls-files
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(yellow)%an%Creset' --abbrev-commit --date=relative
+  ll = log -p --oneline --decorate
 
-    # fetch
-    f = fetch
-    fo = fetch origin
-    fu = fetch upstream
+  # fetch
+  f = fetch
+  fo = fetch origin
+  fu = fetch upstream
 
-    # merge
-    m = merge
-    mc = merge --continue
-    ma = merge --abort
-    ms = merge --skip
+  # merge
+  m = merge
+  ma = merge --abort
+  mc = merge --continue
+  ms = merge --skip
 
-    # push
-    ps = push
-    # push --force but ensure u fetched all data from remote
-    please = push --force-with-lease
+  # push
+  ps = push
+  # push --force but ensure u fetched all data from remote
+  please = push --force-with-lease
 
-    # pull
-    pl = pull
-    pb = pull --rebase
-    up = pull --rebase --autostash
+  # pull
+  pl = pull
+  pb = pull --rebase
+  up = pull --rebase --autostash
 
-    # stash
-    sa = stash apply
-    sc = stash clear
-    sd = stash drop
-    sl = stash list
-    sp = stash pop
-    ss = stash save
-    sw = stash show
+  # stash
+  sa = stash apply
+  sc = stash clear
+  sd = stash drop
+  sl = stash list
+  sp = stash pop
+  ss = stash save
+  sw = stash show
 
-    drzewo = log --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %Cgreen(%cr)%Creset%n%w(80,8,8)%s' --graph
-    duzedrzewo = log --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %Cgreen(%cr)%Creset%n%w(80,8,8)%s%n' --graph --name-status
+  drzewo = log --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %Cgreen(%cr)%Creset%n%w(80,8,8)%s' --graph
+  duzedrzewo = log --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %Cgreen(%cr)%Creset%n%w(80,8,8)%s%n' --graph --name-status
 
-    # Show all of my configured aliases
-    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+  # Show all of my configured aliases
+  aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
 
-    # Show the current branch name (usefull for shell prompts)
-    brname = !git branch | grep "^*" | awk '{ print $2 }'
+  # Show the current branch name (usefull for shell prompts)
+  brname = !git branch | grep "^*" | awk '{ print $2 }'
 
-    # Which files are receiving the most "love"
-    churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 "," $2}'
+  # Which files are receiving the most "love"
+  churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 "," $2}'
 
-    # Return a list of commit SHA1s
-    l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
+  # Return a list of commit SHA1s
+  l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
-    # Show the diff between the latest commit and the current state
-    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-[user]
-	name = fou
-	email = fou@f17.pl
+  # Show the diff between the latest commit and the current state
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
